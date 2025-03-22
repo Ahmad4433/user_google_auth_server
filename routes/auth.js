@@ -1,0 +1,23 @@
+const express = require("express");
+const login = require("../controllers/login");
+const register = require("../controllers/register");
+const getUserProfile = require("../controllers/getUserProfile");
+const auth = require("../middlewares/auth");
+const getAccess = require("../controllers/getAccess");
+const logout = require("../controllers/logout");
+const forgotPassword = require("../controllers/forgotPassword");
+const getOtpExpTime = require("../controllers/getOtpExpTime");
+const verifyOtp = require("../controllers/verifyOtp");
+const updatePassword = require("../controllers/updatePassword");
+const router = express.Router();
+
+router.post("/login", login);
+router.post("/register", register);
+router.get("/access", auth, getAccess);
+router.get("/profile", auth, getUserProfile);
+router.get("/logout", logout);
+router.post("/password/forget", forgotPassword);
+router.post("/otp/verify", verifyOtp);
+router.get("/otp/exp", auth, getOtpExpTime);
+router.post("/password/update", auth, updatePassword);
+module.exports = router;
