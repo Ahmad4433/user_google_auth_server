@@ -51,7 +51,8 @@ const forgotPassword = async (req, res, next) => {
     };
 
     const { accessToken } = generateToken(user, "7d");
-    res.cookie("accessToken", accessToken);
+res.cookie("accessToken", accessToken, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'Strict' });
+
 
     res.status(200).json({
       message: "6-digit otp sent at" + " " + findedUser.email,
