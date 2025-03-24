@@ -19,8 +19,8 @@ const googleAuth = async (req, res, next) => {
     };
 
     const { accessToken, refreshToken } = generateToken(user,'7d');
-    res.cookie("accessToken", accessToken);
-    res.cookie("refreshToken", refreshToken);
+    res.cookie("accessToken", accessToken,{secure:true,sameSite:'none'});
+    res.cookie("refreshToken", refreshToken,{secure:true,sameSite:'none'});
     next();
   } catch (error) {
     next(error);
