@@ -16,6 +16,18 @@ app.use(
   })
 );
 
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: true,
+     cookie: {
+      secure: true, // set to true if using HTTPS
+      sameSite: 'none', // important for cross-origin
+    },
+  })
+);
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
@@ -24,13 +36,7 @@ app.get("/", (req, res, next) => {
   res.send("server is listening");
 });
 
-app.use(
-  session({
-    secret: "secret",
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+
 
 app.use(passport.initialize());
 app.use(passport.session());
