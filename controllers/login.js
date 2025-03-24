@@ -20,8 +20,8 @@ const login = async (req, res, next) => {
     }
 
     const { accessToken, refreshToken } = generateToken(findedUser, "7d");
-res.cookie("accessToken", accessToken, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
-res.cookie("refreshToken", refreshToken, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+res.cookie("accessToken", accessToken, { httpOnly: true, secure: true,sameSite:'none'});
+res.cookie("refreshToken", refreshToken, { httpOnly: true, secure:true,sameSite:'none' });
 
     res
       .status(200)
