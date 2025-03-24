@@ -51,7 +51,7 @@ const forgotPassword = async (req, res, next) => {
     };
 
     const { accessToken } = generateToken(user, "7d");
-res.cookie("accessToken", accessToken, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'Strict' });
+res.cookie("accessToken", accessToken, { httpOnly: true, secure:, sameSite: 'none' });
 
 
     res.status(200).json({
